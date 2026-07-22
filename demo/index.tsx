@@ -1,8 +1,14 @@
-import Simpleact from '../src/index';
+import SimpleactDOM from "../src/core/SimpleactDOM";
 
-const simpleactJSXElement = (
-  <div data-test-id="1">qwe</div>
+const SimpleactJSXElement = (
+  <button color="red">
+    <div data-test-id="false number">0</div>
+    <div></div>
+    "Test"
+  </button>
 )
 
-console.log("Simpleact: ", Simpleact);
-console.log("simpleactJSXElement: ", simpleactJSXElement)
+console.log("[DEBUG]: ", SimpleactJSXElement);
+
+const root = document.getElementById('root');
+if (root) SimpleactDOM.render(SimpleactJSXElement, root);
