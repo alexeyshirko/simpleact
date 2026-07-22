@@ -1,0 +1,21 @@
+{
+  "name": "simpleact",
+  "version": "1.0.0",
+  "description": "Minimal React-like library for TA",
+  "type": "module",
+  "scripts": {
+    "demo": "vite --config demo/vite.config.ts",
+    "build": "tsc && vite build"
+  },
+  "keywords": [
+    "virtual-dom",
+    "jsx",
+    "mini-react"
+  ],
+  "author": "Alexey Shirko",
+  "devDependencies": {
+    "@types/node": "^26.1.1",
+    "typescript": "^5.2.2",
+    "vite": "^8.1.5"
+  }
+}
