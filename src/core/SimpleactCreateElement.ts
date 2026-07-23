@@ -4,7 +4,7 @@ import {
   type SimpleactElement,
   SimpleactElementType
 } from "./Simpleact";
-import { normalizeChildren } from "./SimpleactNormalizeElement";
+import { normalizeChildren } from "./SimpleactNormalizeChildren";
 
 export function createElement(type: string, props: Props, children: Children) {
   return createSimpleactElement(type, props, children);
