@@ -1,15 +1,15 @@
 import { 
   type Child, 
   type Children, 
-  type VirtualElement, 
-  type VirtualElementChildren, 
-  type VirtualElementEmpty, 
-  type VirtualElementParent, 
-  VirtualElementType 
+  type SimpleactElement, 
+  type SimpleactElementChildren, 
+  type SimpleactElementEmpty, 
+  type SimpleactElementParent, 
+  SimpleactElementType 
 } from "./Simpleact";
 
-export function normalizeChildren(children: Children): VirtualElementChildren {
-  const formattedChildren: VirtualElementChildren = [];
+export function normalizeChildren(children: Children): SimpleactElementChildren {
+  const formattedChildren: SimpleactElementChildren = [];
 
   const recursiveCreation = (children: Children) => {
     for (const child of children) {
@@ -27,20 +27,20 @@ export function normalizeChildren(children: Children): VirtualElementChildren {
   return formattedChildren;
 }
 
-function normalizeChild(child: Child): VirtualElement {
-  if (isVirtualElementEmpty(child)) return { type: VirtualElementType.Empty };
+function normalizeChild(child: Child): SimpleactElement {
+  if (isVirtualElementEmpty(child)) return { type: SimpleactElementType.Empty };
   else if (isVirtualElementParent(child)) return child;
   else return {
-    type: VirtualElementType.Text,
+    type: SimpleactElementType.Text,
     value: String(child),
   }
 }
 
-function isVirtualElementParent(child: Child): child is VirtualElementParent {
-  const parentVirtualTypes = [VirtualElementType.Tag];
+function isVirtualElementParent(child: Child): child is SimpleactElementParent {
+  const parentVirtualTypes = [SimpleactElementType.Tag];
   return parentVirtualTypes.includes(child.type);
 }
 
-function isVirtualElementEmpty(child: Child): child is VirtualElementEmpty {
+function isVirtualElementEmpty(child: Child): child is SimpleactElementEmpty {
   return !child || child === 0;
 }

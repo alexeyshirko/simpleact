@@ -1,6 +1,6 @@
-import type { VirtualElement } from "./Simpleact";
+import type { SimpleactElement } from "./Simpleact";
 
-function render(element: VirtualElement, parent: HTMLElement) {
+function render(_: SimpleactElement, __: HTMLElement) {
   return "render";
 }
 

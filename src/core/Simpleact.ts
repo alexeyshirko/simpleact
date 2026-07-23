@@ -4,31 +4,31 @@ export type Props = Record<string, any>;
 export type Child = any;
 export type Children = Child[];
 
-export enum VirtualElementType {
+export enum SimpleactElementType {
   Empty = 'empty',
   Tag = 'tag',
   Text = 'text',
 }
 
-export interface VirtualElementEmpty {
-  type: VirtualElementType.Empty;
+export interface SimpleactElementEmpty {
+  type: SimpleactElementType.Empty;
 }
 
-export interface VirtualElementTag {
-  children: VirtualElementChildren;
+export interface SimpleactElementTag {
+  children: SimpleactElementChildren;
   props: Props;
   tag: string;
-  type: VirtualElementType.Tag;
+  type: SimpleactElementType.Tag;
 }
 
-export interface VirtualElementText {
-  type: VirtualElementType.Text;
+export interface SimpleactElementText {
+  type: SimpleactElementType.Text;
   value: string;
 }
 
-export type VirtualElement = VirtualElementEmpty | VirtualElementTag | VirtualElementText;
+export type SimpleactElement = SimpleactElementEmpty | SimpleactElementTag | SimpleactElementText;
 
-export type VirtualElementParent = VirtualElementTag;
-export type VirtualElementChildren = VirtualElement[];
+export type SimpleactElementParent = SimpleactElementTag;
+export type SimpleactElementChildren = SimpleactElement[];
 
 export const Simpleact = { createElement };

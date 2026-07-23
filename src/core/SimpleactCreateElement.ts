@@ -1,22 +1,22 @@
 import {
   type Children,
   type Props,
-  type VirtualElement,
-  VirtualElementType
+  type SimpleactElement,
+  SimpleactElementType
 } from "./Simpleact";
 import { normalizeChildren } from "./SimpleactNormalizeElement";
 
-function SimpleactElement(type: string, props: Props, children: Children) {
-  const virtualElement: VirtualElement = {
+export function createElement(type: string, props: Props, children: Children) {
+  return createSimpleactElement(type, props, children);
+}
+
+function createSimpleactElement(type: string, props: Props, children: Children) {
+  const virtualElement: SimpleactElement = {
     children: normalizeChildren(children),
     props,
     tag: type,
-    type: VirtualElementType.Tag,
+    type: SimpleactElementType.Tag,
   };
 
   return virtualElement;
-}
-
-export function createElement(type: string, props: Props, children: Children) {
-  return SimpleactElement(type, props, children);
 }
