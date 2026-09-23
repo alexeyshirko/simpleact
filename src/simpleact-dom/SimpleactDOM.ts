@@ -1,4 +1,4 @@
-import type { SimpleactElement } from "./Simpleact";
+import type { SimpleactElement } from "../simpleact/SimpleactElement";
 
 function render(_: SimpleactElement, __: HTMLElement) {
   return "render";

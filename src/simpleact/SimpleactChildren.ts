@@ -1,12 +1,5 @@
-import { 
-  type Child, 
-  type Children, 
-  type SimpleactElement, 
-  type SimpleactElementChildren, 
-  type SimpleactElementEmpty, 
-  type SimpleactElementParent, 
-  SimpleactElementType 
-} from "./Simpleact";
+import { SimpleactElement, SimpleactElementChildren, SimpleactElementEmpty, SimpleactElementParent, SimpleactElementType } from "./SimpleactElement";
+import { type Child, type Children } from "./Simpleact";
 
 export function normalizeChildren(children: Children): SimpleactElementChildren {
   const formattedChildren: SimpleactElementChildren = [];

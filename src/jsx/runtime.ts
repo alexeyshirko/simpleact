@@ -1,5 +1,5 @@
-import type { Props } from "../core/Simpleact";
-import { createElement } from "../core/SimpleactCreateElement";
+import type { Props } from "../simpleact/Simpleact";
+import { createElement } from "../simpleact/SimpleactElement";
 
 function jsx(type: string, props: Props) {
   const children = Array.isArray(props.children) ? props.children : [props.children];

@@ -1,4 +1,4 @@
-import SimpleactDOM from "../src/core/SimpleactDOM";
+import SimpleactDOM from "../src/simpleact-dom/SimpleactDOM";
 
 const SimpleactJSXElement = (
   <button color="red">

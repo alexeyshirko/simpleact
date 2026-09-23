@@ -1,4 +1,4 @@
-import * as SimpleactDOM from "./core/SimpleactDOM";
-import * as Simpleact from "./core/Simpleact";
+import * as SimpleactDOM from "./simpleact-dom/SimpleactDOM";
+import * as Simpleact from "./simpleact/Simpleact";
 
 export { Simpleact, SimpleactDOM };

@@ -1,8 +1,5 @@
-import { createElement } from "./SimpleactCreateElement";
-
-export type Props = Record<string, any>;
-export type Child = any;
-export type Children = Child[];
+import { type Children, type Props } from "./Simpleact";
+import { normalizeChildren } from "./SimpleactChildren";
 
 export enum SimpleactElementType {
   Empty = 'empty',
@@ -31,4 +28,19 @@ export type SimpleactElement = SimpleactElementEmpty | SimpleactElementTag | Sim
 export type SimpleactElementParent = SimpleactElementTag;
 export type SimpleactElementChildren = SimpleactElement[];
 
-export const Simpleact = { createElement };
+export function createElement(tag: string, props: Props, children: Children) {
+  return SimpleactElement(tag, props, children);
+}
+
+function SimpleactElement(tag: string, props: Props, children: Children) {
+  const formattedChildren = normalizeChildren(children);
+
+  const virtualElement: SimpleactElement = {
+    children: formattedChildren,
+    props,
+    tag,
+    type: SimpleactElementType.Tag,
+  };
+
+  return virtualElement;
+}
