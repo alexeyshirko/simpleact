@@ -18,6 +18,7 @@ const tagBuilder: ElementBuilder<string> = {
   build: (source, { children, ...props }) => ({
     children: normalizeChildren(children),
     props,
+    target: null,
     tag: source,
     type: SimpleactElementType.Tag,
   }),
@@ -25,7 +26,10 @@ const tagBuilder: ElementBuilder<string> = {
 
 const fragmentBuilder: ElementBuilder<typeof Fragment> = {
   match: (source): source is typeof Fragment => source === Fragment,
-  build: (_s, { children }) => ({ children: normalizeChildren(children), type: SimpleactElementType.Fragment }),
+  build: (_s, { children }) => ({
+    children: normalizeChildren(children, { saveDOMPosition: true }),
+    type: SimpleactElementType.Fragment,
+  }),
 };
 
 const componentBuilder: ElementBuilder<SimpleactComponent> = {

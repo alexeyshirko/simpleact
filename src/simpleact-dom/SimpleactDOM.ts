@@ -1,7 +1,10 @@
-import type { SimpleactElement } from "../simpleact/SimpleactElementTypes";
+import { type SimpleactElement } from "../simpleact/SimpleactElementTypes";
+import { mountElement } from "./SimpleactDOMMount";
 
-function render(_: SimpleactElement, __: HTMLElement) {
-  return "render";
+function render(element: SimpleactElement, container: HTMLElement) {
+  const nextSibling = null;
+
+  mountElement(element, container, nextSibling);
 }
 
 export { render };

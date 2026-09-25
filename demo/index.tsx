@@ -5,10 +5,12 @@ const SimpleactJSXElement = (props: { row: string }) => {
     <>
       <button color="red">
         <div data-test-id="false number">
-          0<div>{props.row}</div>
+          <>
+            0<div>{props.row}</div>
+          </>
         </div>
         <div></div>
-        "Test"
+        Test
       </button>
     </>
   );

@@ -18,17 +18,20 @@ export enum SimpleactElementType {
 }
 
 export interface SimpleactElementEmpty {
+  target: Text | null;
   type: SimpleactElementType.Empty;
 }
 
 export interface SimpleactElementTag {
   children: SimpleactElementChildren;
   props: Props;
+  target: HTMLElement | null;
   tag: string;
   type: SimpleactElementType.Tag;
 }
 
 export interface SimpleactElementText {
+  target: Text | null;
   type: SimpleactElementType.Text;
   value: string;
 }
