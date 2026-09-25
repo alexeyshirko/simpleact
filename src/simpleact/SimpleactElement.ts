@@ -1,46 +1,13 @@
-import { type Children, type Props } from "./Simpleact";
 import { normalizeChildren } from "./SimpleactChildren";
+import { SimpleactElementBuilders } from "./SimpleactElementBuilders";
+import { type SimpleactElementParent, type Children, type ElementSource, type Props } from "./SimpleactElementTypes";
 
-export enum SimpleactElementType {
-  Empty = 'empty',
-  Tag = 'tag',
-  Text = 'text',
-}
+export function createElement(source: ElementSource, props: Props, ...children: Children): SimpleactElementParent {
+  const builder = SimpleactElementBuilders.find((builder) => builder.match(source));
+  if (!builder) throw new Error(`Unknown element source: ${String(source)}`);
 
-export interface SimpleactElementEmpty {
-  type: SimpleactElementType.Empty;
-}
-
-export interface SimpleactElementTag {
-  children: SimpleactElementChildren;
-  props: Props;
-  tag: string;
-  type: SimpleactElementType.Tag;
-}
-
-export interface SimpleactElementText {
-  type: SimpleactElementType.Text;
-  value: string;
-}
-
-export type SimpleactElement = SimpleactElementEmpty | SimpleactElementTag | SimpleactElementText;
-
-export type SimpleactElementParent = SimpleactElementTag;
-export type SimpleactElementChildren = SimpleactElement[];
-
-export function createElement(tag: string, props: Props, children: Children) {
-  return SimpleactElement(tag, props, children);
-}
-
-function SimpleactElement(tag: string, props: Props, children: Children) {
   const formattedChildren = normalizeChildren(children);
+  const simpleactElement = builder.build(source, props, formattedChildren);
 
-  const virtualElement: SimpleactElement = {
-    children: formattedChildren,
-    props,
-    tag,
-    type: SimpleactElementType.Tag,
-  };
-
-  return virtualElement;
+  return simpleactElement;
 }

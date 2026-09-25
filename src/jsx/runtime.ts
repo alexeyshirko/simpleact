@@ -1,12 +1,19 @@
-import type { Props } from "../simpleact/Simpleact";
-import { createElement } from "../simpleact/SimpleactElement";
+import type { JSX as ReactJSX } from "react";
+import { Fragment, createElement } from "../simpleact/Simpleact";
+import type { Child, Children, ElementSource, Props, SimpleactElementParent } from "../simpleact/SimpleactElementTypes";
 
-function jsx(type: string, props: Props) {
-  const children = Array.isArray(props.children) ? props.children : [props.children];
-  delete props.children;
+export namespace JSX {
+  export type Element = SimpleactElementParent;
+  export type IntrinsicElements = {
+    [K in keyof ReactJSX.IntrinsicElements]: Omit<ReactJSX.IntrinsicElements[K], "children"> & { children?: Child };
+  };
+}
 
-  return createElement(type, props, children);
+export function jsx(source: ElementSource, { children = [], ...props }: Props & { children?: Children }) {
+  return createElement(source, props, children);
 }
 
 export const jsxs = jsx;
 export const jsxDEV = jsx;
+
+export { Fragment };

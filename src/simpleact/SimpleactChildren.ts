@@ -1,5 +1,4 @@
-import { SimpleactElement, SimpleactElementChildren, SimpleactElementEmpty, SimpleactElementParent, SimpleactElementType } from "./SimpleactElement";
-import { type Child, type Children } from "./Simpleact";
+import { type SimpleactElementChildren, type Children, type Child, type SimpleactElement, SimpleactElementType, type EmptyChild } from "./SimpleactElementTypes";
 
 export function normalizeChildren(children: Children): SimpleactElementChildren {
   const formattedChildren: SimpleactElementChildren = [];
@@ -20,20 +19,17 @@ export function normalizeChildren(children: Children): SimpleactElementChildren 
   return formattedChildren;
 }
 
-function normalizeChild(child: Child): SimpleactElement {
-  if (isVirtualElementEmpty(child)) return { type: SimpleactElementType.Empty };
-  else if (isVirtualElementParent(child)) return child;
-  else return {
+function normalizeChild(child: Exclude<Child, Children>): SimpleactElement {
+  if (isEmptyChild(child)) return { type: SimpleactElementType.Empty };
+
+  if (typeof child === "object") return child;
+
+  return {
     type: SimpleactElementType.Text,
     value: String(child),
   }
 }
 
-function isVirtualElementParent(child: Child): child is SimpleactElementParent {
-  const parentVirtualTypes = [SimpleactElementType.Tag];
-  return parentVirtualTypes.includes(child.type);
-}
-
-function isVirtualElementEmpty(child: Child): child is SimpleactElementEmpty {
-  return !child || child === 0;
+function isEmptyChild(child: Child): child is EmptyChild {
+  return child === null || child === undefined || typeof child === "boolean";
 }
