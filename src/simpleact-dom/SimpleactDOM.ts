@@ -1,8 +1,7 @@
-import type { SimpleactElement } from "../simpleact/SimpleactElement";
+import type { SimpleactElement } from "../simpleact/SimpleactElementTypes";
 
 function render(_: SimpleactElement, __: HTMLElement) {
   return "render";
 }
 
-const SimpleactDOM = { render };
-export default SimpleactDOM;
+export { render };
