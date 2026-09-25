@@ -1,17 +1,12 @@
-import { type SimpleactElementChildren, type Children, type Child, type SimpleactElement, SimpleactElementType, type EmptyChild } from "./SimpleactElementTypes";
+import { type SimpleactElementChildren, type Child, type SimpleactElement, SimpleactElementType, type EmptyChild, type Children } from "./SimpleactElementTypes";
 
-export function normalizeChildren(children: Children): SimpleactElementChildren {
+export function normalizeChildren(children: Child): SimpleactElementChildren {
   const formattedChildren: SimpleactElementChildren = [];
+  if (children === undefined) return formattedChildren;
 
-  const recursiveCreation = (children: Children) => {
-    for (const child of children) {
-      if (Array.isArray(child)) {
-        recursiveCreation(child);
-      } else {
-        const formattedChild = normalizeChild(child);
-        formattedChildren.push(formattedChild)
-      }
-    }
+  const recursiveCreation = (child: Child) => {
+    if (Array.isArray(child)) child.forEach(recursiveCreation);
+    else formattedChildren.push(normalizeChild(child));
   };
 
   recursiveCreation(children);
