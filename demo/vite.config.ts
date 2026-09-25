@@ -1,5 +1,5 @@
-import { defineConfig } from 'vite';
-import { resolve } from 'path';
+import { defineConfig } from "vite";
+import { resolve } from "path";
 
 export default defineConfig({
   root: resolve(__dirname),
@@ -9,13 +9,13 @@ export default defineConfig({
   /** @see https://oxc.rs/docs/guide/usage/transformer/jsx.html */
   oxc: {
     jsx: {
-      runtime: 'automatic',
-      importSource: 'simpleact',
+      runtime: "automatic",
+      importSource: "simpleact",
     },
   },
   resolve: {
     alias: {
-      'simpleact/jsx-dev-runtime': resolve(__dirname, '../src/jsx/dev-runtime.ts'),
+      "simpleact/jsx-dev-runtime": resolve(__dirname, "../src/jsx/dev-runtime.ts"),
     },
   },
 });

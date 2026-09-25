@@ -1,4 +1,11 @@
-import { type SimpleactElementChildren, type Child, type SimpleactElement, SimpleactElementType, type EmptyChild, type Children } from "./SimpleactElementTypes";
+import {
+  type SimpleactElementChildren,
+  type Child,
+  type SimpleactElement,
+  SimpleactElementType,
+  type EmptyChild,
+  type Children,
+} from "./SimpleactElementTypes";
 
 export function normalizeChildren(children: Child): SimpleactElementChildren {
   const formattedChildren: SimpleactElementChildren = [];
@@ -22,7 +29,7 @@ function normalizeChild(child: Exclude<Child, Children>): SimpleactElement {
   return {
     type: SimpleactElementType.Text,
     value: String(child),
-  }
+  };
 }
 
 function isEmptyChild(child: Child): child is EmptyChild {

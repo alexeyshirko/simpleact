@@ -1,17 +1,17 @@
-import { defineConfig } from 'vite';
-import { resolve } from 'path';
+import { defineConfig } from "vite";
+import { resolve } from "path";
 
 export default defineConfig({
   build: {
     /** @see https://vite.dev/config/build-options#build-lib */
     lib: {
-      entry: resolve(__dirname, 'src/index.ts'),
-      name: 'Simpleact',
+      entry: resolve(__dirname, "src/index.ts"),
+      name: "Simpleact",
       fileName: (format) => {
-        if (format === 'cjs') return 'index-[hash].cjs.js';
+        if (format === "cjs") return "index-[hash].cjs.js";
         return `index.${format}.js`;
       },
-      formats: ['cjs'],
+      formats: ["cjs"],
     },
 
     /** @deprecated rolldownOptions */
@@ -19,20 +19,19 @@ export default defineConfig({
     rollupOptions: {
       output: {
         preserveModules: true,
-        preserveModulesRoot: 'src',
+        preserveModulesRoot: "src",
         minifyInternalExports: true,
       },
     },
 
     /** @see https://vite.dev/config/build-options#build-minify */
-    minify: 'terser',
+    minify: "terser",
 
     /** @see https://terser.org/docs/api-reference/#minify-options */
     terserOptions: {
-
       /** @see https://terser.org/docs/options/#compress-options */
       compress: {
-        pure_funcs: ['console.log'],
+        pure_funcs: ["console.log"],
         passes: 2,
         unsafe: true,
         unsafe_arrows: true,

@@ -10,11 +10,11 @@ export type Child = SimpleactElement | string | number | EmptyChild | Children;
 export type Children = Child[];
 
 export enum SimpleactElementType {
-  Empty = 'empty',
-  Component = 'component',
-  Fragment = 'fragment',
-  Tag = 'tag',
-  Text = 'text',
+  Empty = "empty",
+  Component = "component",
+  Fragment = "fragment",
+  Tag = "tag",
+  Text = "text",
 }
 
 export interface SimpleactElementEmpty {
@@ -50,7 +50,12 @@ export interface ComponentInstance {
   element: SimpleactElementComponent;
 }
 
-export type SimpleactElement = SimpleactElementEmpty | SimpleactElementTag | SimpleactElementText | SimpleactElementFragment | SimpleactElementComponent;
+export type SimpleactElement =
+  | SimpleactElementEmpty
+  | SimpleactElementTag
+  | SimpleactElementText
+  | SimpleactElementFragment
+  | SimpleactElementComponent;
 
 export type SimpleactElementParent = Extract<SimpleactElement, { children: unknown }>;
 export type SimpleactElementChildren = SimpleactElement[];

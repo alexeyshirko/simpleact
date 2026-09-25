@@ -3,7 +3,7 @@ import { type ComponentInstance, type SimpleactElementComponent } from "./Simple
 export function createComponentInstance(element: SimpleactElementComponent) {
   const componentInstance: ComponentInstance = {
     element,
-  }
+  };
 
   return componentInstance;
 }
