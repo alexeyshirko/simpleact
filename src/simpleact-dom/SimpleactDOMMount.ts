@@ -12,9 +12,9 @@ import {
 import { mountElementProps } from "./SimpleactDOMProps";
 import { cloneElement, isElementMounted } from "./SimpleactElementState";
 
-type Mounter<E extends SimpleactElement> = (element: E, parentNode: Node, nextSibling: Node | null) => void;
+type Mounter<E extends SimpleactElement, R = void> = (element: E, parentNode: Node, nextSibling: Node | null) => R;
 
-export function mountElement(element: SimpleactElement, parentNode: Node, nextSibling: Node | null) {
+export const mountElement: Mounter<SimpleactElement, SimpleactElement> = (element, parentNode, nextSibling) => {
   const currentElement = isElementMounted(element) ? cloneElement(element) : element;
 
   switch (currentElement.type) {
@@ -41,7 +41,7 @@ export function mountElement(element: SimpleactElement, parentNode: Node, nextSi
   }
 
   return currentElement;
-}
+};
 
 const mountElementComponent: Mounter<SimpleactElementComponent> = (element, parentNode, nextSibling) => {
   mountComponent(element);
