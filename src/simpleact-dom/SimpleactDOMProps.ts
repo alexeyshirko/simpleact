@@ -1,7 +1,6 @@
 import { type Props } from "../simpleact/SimpleactElementTypes";
 import { isNullable } from "../utils/isNullable";
 
-type AttributeProp = `data-${string}` | `aria-${string}`;
 type StyleProp = "style";
 
 interface Handler<K extends string = string> {
@@ -42,13 +41,17 @@ function getPropHandler(key: string): Handler | null {
   else return propertyHandler;
 }
 
-const attributeHandler: Handler<AttributeProp> = {
+const attributeHandler: Handler = {
   set: (node, key, value) => node.setAttribute(key, String(value)),
 };
 
 const propertyHandler: Handler = {
   set: (node, key, value) => {
-    (node as unknown as Record<string, unknown>)[key] = value;
+    try {
+      (node as unknown as Record<string, unknown>)[key] = value;
+    } catch {
+      attributeHandler.set(node, key, value);
+    }
   },
 };
 
