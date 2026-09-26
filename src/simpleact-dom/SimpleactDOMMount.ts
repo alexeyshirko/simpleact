@@ -9,6 +9,7 @@ import {
   SimpleactElementText,
   SimpleactElementType,
 } from "../simpleact/SimpleactElementTypes";
+import { mountElementProps } from "./SimpleactDOMProps";
 import { cloneElement, isElementMounted } from "./SimpleactElementState";
 
 type Mounter<E extends SimpleactElement> = (element: E, parentNode: Node, nextSibling: Node | null) => void;
@@ -62,6 +63,7 @@ const mountTagElement: Mounter<SimpleactElementTag> = (element, parentNode, next
   const node = document.createElement(element.tag);
   element.target = node;
 
+  mountElementProps(node, element.props);
   mountComponentChildren(element, node, null);
 
   parentNode.insertBefore(node, nextSibling);

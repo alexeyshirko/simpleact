@@ -10,8 +10,8 @@ export function createComponentInstance(element: SimpleactElementComponent) {
 }
 
 export function mountComponent(element: SimpleactElementComponent) {
-  const componentInstanсe = createComponentInstance(element);
-  element.componentInstance = componentInstanсe;
+  const componentInstance = createComponentInstance(element);
+  element.componentInstance = componentInstance;
 
   const formattedChildren = normalizeChildren(element.component(element.props), { saveDOMPosition: true });
   element.children = formattedChildren;

@@ -3,7 +3,7 @@ import { render } from "../src/simpleact-dom/SimpleactDOM";
 const SimpleactJSXElement = (props: { row: string }) => {
   return (
     <>
-      <button color="red">
+      <button disabled style={{ backgroundColor: "red" }}>
         <div data-test-id="false number">
           <>
             0<div>{props.row}</div>
