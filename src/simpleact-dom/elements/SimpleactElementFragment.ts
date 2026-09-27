@@ -9,4 +9,7 @@ export const SimpleactElementFragmentMethods: SimpleactElementTypeMethods<Simple
   update: (oldElement, newElement, parentNode) => {
     SimpleactElementChildrenMethods.update(oldElement, newElement, parentNode);
   },
+  unmount: (element, shouldRemoveNode) => {
+    SimpleactElementChildrenMethods.unmount(element, shouldRemoveNode);
+  },
 };

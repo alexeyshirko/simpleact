@@ -5,6 +5,18 @@ import {
   type SimpleactElement,
 } from "../simpleact/SimpleactElementTypes";
 
+export function getLastNode(element: SimpleactElement): Node {
+  switch (element.type) {
+    case SimpleactElementType.Component:
+    case SimpleactElementType.Fragment:
+      return getLastNode(element.children[element.children.length - 1]);
+    case SimpleactElementType.Empty:
+    case SimpleactElementType.Tag:
+    case SimpleactElementType.Text:
+      return element.target!;
+  }
+}
+
 export function isSameElement(oldElement: SimpleactElement, newElement: SimpleactElement) {
   if (oldElement.type !== newElement.type) return false;
 

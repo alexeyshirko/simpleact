@@ -19,4 +19,8 @@ export const SimpleactElementTextMethods: SimpleactElementTypeMethods<SimpleactE
       node.data = newElement.value;
     }
   },
+  unmount: (element, shouldRemoveNode) => {
+    if (shouldRemoveNode) element.target?.remove();
+    element.target = null;
+  },
 };

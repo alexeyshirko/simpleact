@@ -24,4 +24,10 @@ export const SimpleactElementTagMethods: SimpleactElementTypeMethods<SimpleactEl
       SimpleactElementChildrenMethods.update(oldElement, newElement, node);
     }
   },
+  unmount: (element, shouldRemoveNode) => {
+    if (shouldRemoveNode) element.target?.remove();
+    element.target = null;
+
+    SimpleactElementChildrenMethods.unmount(element, false);
+  },
 };

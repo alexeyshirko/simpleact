@@ -20,6 +20,6 @@ const elementTypeMethods: ElementTypeMethods = {
   [SimpleactElementType.Text]: SimpleactElementTextMethods,
 };
 
-export function getElementMethods(element: SimpleactElement): SimpleactElementTypeMethods<SimpleactElement> {
-  return elementTypeMethods[element.type];
+export function getElementMethodsByType(type: SimpleactElementType): SimpleactElementTypeMethods<SimpleactElement> {
+  return elementTypeMethods[type];
 }

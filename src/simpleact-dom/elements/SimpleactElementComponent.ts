@@ -11,4 +11,8 @@ export const SimpleactElementComponentMethods: SimpleactElementTypeMethods<Simpl
   update: (_oldElement, _newElement) => {
     throw new Error("not support now");
   },
+  unmount: (element, shouldRemoveNode) => {
+    SimpleactElementChildrenMethods.unmount(element, shouldRemoveNode);
+    element.componentInstance = null;
+  },
 };
