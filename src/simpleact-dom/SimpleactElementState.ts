@@ -1,4 +1,25 @@
-import { SimpleactElementType, type SimpleactElement } from "../simpleact/SimpleactElementTypes";
+import {
+  type SimpleactElementComponent,
+  type SimpleactElementTag,
+  SimpleactElementType,
+  type SimpleactElement,
+} from "../simpleact/SimpleactElementTypes";
+
+export function isSameElement(oldElement: SimpleactElement, newElement: SimpleactElement) {
+  if (oldElement.type !== newElement.type) return false;
+
+  switch (newElement.type) {
+    case SimpleactElementType.Component: {
+      return (oldElement as SimpleactElementComponent).component === newElement.component;
+    }
+    case SimpleactElementType.Tag: {
+      return (oldElement as SimpleactElementTag).tag === newElement.tag;
+    }
+    default: {
+      return true;
+    }
+  }
+}
 
 export function isElementMounted(element: SimpleactElement) {
   switch (element.type) {
