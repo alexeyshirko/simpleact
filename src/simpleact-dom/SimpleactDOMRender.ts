@@ -1,7 +1,7 @@
 import { type SimpleactElement } from "../simpleact/SimpleactElementTypes";
 import { isNullable } from "../utils/isNullable";
 import { getElementMethodsByType } from "./elements/SimpleactElementRegistry";
-import { cloneElement, getLastNode, isElementMounted, isSameElement } from "./SimpleactElementState";
+import { cloneElement, getLastNode, isElementMounted, isSameElement } from "../simpleact/SimpleactElementState";
 
 export function renderElement(
   oldElement: SimpleactElement | null,

@@ -3,7 +3,7 @@ import {
   type SimpleactElementTag,
   SimpleactElementType,
   type SimpleactElement,
-} from "../simpleact/SimpleactElementTypes";
+} from "./SimpleactElementTypes";
 
 export function getLastNode(element: SimpleactElement): Node {
   switch (element.type) {

@@ -2,7 +2,7 @@ import { type SimpleactElementChildren, type SimpleactElementParent } from "../.
 import { type SimpleactElementTypeMethods } from "./SimpleactElementMethodsTypes";
 import { renderElement } from "../SimpleactDOMRender";
 import { getElementMethodsByType } from "./SimpleactElementRegistry";
-import { getLastNode } from "../SimpleactElementState";
+import { getLastNode } from "../../simpleact/SimpleactElementState";
 
 export const SimpleactElementChildrenMethods: SimpleactElementTypeMethods<SimpleactElementParent> = {
   mount: (element, parentNode, nextSibling) => {
