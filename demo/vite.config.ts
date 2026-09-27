@@ -3,6 +3,7 @@ import { resolve } from "path";
 
 export default defineConfig({
   root: resolve(__dirname),
+  base: "./",
   server: {
     port: 3000,
   },
