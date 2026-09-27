@@ -1,3 +1,4 @@
+import { DebugAction, debugGroup, debugGroupEnd, debugLog, getElementName } from "../../simpleact/SimpleactDebug";
 import { type SimpleactElementTag } from "../../simpleact/SimpleactElementTypes";
 import { type SimpleactElementTypeMethods } from "./SimpleactElementMethodsTypes";
 import { mountElementProps, updateElementProps } from "../SimpleactDOMProps";
@@ -5,6 +6,8 @@ import { SimpleactElementChildrenMethods } from "./SimpleactElementChildren";
 
 export const SimpleactElementTagMethods: SimpleactElementTypeMethods<SimpleactElementTag> = {
   mount: (element, parentNode, nextSibling) => {
+    debugGroup(DebugAction.Mount, getElementName(element));
+
     const node = document.createElement(element.tag);
     element.target = node;
 
@@ -12,6 +15,8 @@ export const SimpleactElementTagMethods: SimpleactElementTypeMethods<SimpleactEl
     SimpleactElementChildrenMethods.mount(element, node, null);
 
     parentNode.insertBefore(node, nextSibling);
+
+    debugGroupEnd();
   },
   update: (oldElement, newElement) => {
     const node = oldElement.target;
@@ -26,7 +31,11 @@ export const SimpleactElementTagMethods: SimpleactElementTypeMethods<SimpleactEl
     }
   },
   unmount: (element, shouldRemoveNode) => {
-    if (shouldRemoveNode) element.target?.remove();
+    if (shouldRemoveNode) {
+      debugLog(DebugAction.Unmount, getElementName(element));
+      element.target?.remove();
+    }
+
     element.target = null;
 
     SimpleactElementChildrenMethods.unmount(element, false);

@@ -1,6 +1,7 @@
 import { SimpleactElementChildrenMethods } from "../simpleact-dom/elements/SimpleactElementChildren";
 import { isNullable } from "../utils/isNullable";
 import { normalizeChildren } from "./SimpleactChildren";
+import { DebugAction, debugGroup, debugGroupEnd, getElementName } from "./SimpleactDebug";
 import { getLastNode } from "./SimpleactElementState";
 import { type Child, type ComponentInstance, type SimpleactElementComponent } from "./SimpleactElementTypes";
 
@@ -75,8 +76,12 @@ export function rerenderComponent(componentInstance: ComponentInstance) {
   const parentNode = getLastNode(element).parentNode;
   if (isNullable(parentNode)) return;
 
+  debugGroup(DebugAction.Render, `${getElementName(element)} — state changed`);
+
   const previousElement = { ...element };
   renderComponent(element);
 
   SimpleactElementChildrenMethods.update(previousElement, element, parentNode);
+
+  debugGroupEnd();
 }

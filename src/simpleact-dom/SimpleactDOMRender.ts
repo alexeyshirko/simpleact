@@ -1,6 +1,7 @@
 import { type SimpleactElement } from "../simpleact/SimpleactElementTypes";
 import { isNullable } from "../utils/isNullable";
 import { getElementMethodsByType } from "./elements/SimpleactElementRegistry";
+import { DebugAction, debugLog, getElementName } from "../simpleact/SimpleactDebug";
 import { cloneElement, getLastNode, isElementMounted, isSameElement } from "../simpleact/SimpleactElementState";
 
 export function renderElement(
@@ -24,6 +25,8 @@ export function renderElement(
   if (isDifferentElement) {
     const nodeAfterOldElement = getLastNode(oldElement).nextSibling;
     const oldElementMethods = getElementMethodsByType(oldElement.type);
+
+    debugLog(DebugAction.Replace, `${getElementName(oldElement)} → ${getElementName(currentElement)}`);
 
     oldElementMethods.unmount(oldElement, true);
     currentElementMethods.mount(currentElement, parentNode, nodeAfterOldElement);

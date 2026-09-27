@@ -1,3 +1,4 @@
+import { DebugAction, debugLog, formatDebugValue } from "../simpleact/SimpleactDebug";
 import { type Props } from "../simpleact/SimpleactElementTypes";
 import { isNullable } from "../utils/isNullable";
 
@@ -33,6 +34,8 @@ export function updateElementProps(node: HTMLElement, oldProps: Props, newProps:
 
     if (isRemoved(oldProp, newProp)) {
       const handler = getPropHandler(key);
+      if (handler) debugLog(DebugAction.Prop, `<${node.localName}> ${key} removed`);
+
       handler?.remove(node, key, oldProp);
     }
   }
@@ -43,6 +46,8 @@ export function updateElementProps(node: HTMLElement, oldProps: Props, newProps:
 
     if (isChanged(newProp, oldProp)) {
       const handler = getPropHandler(key);
+      if (handler) debugLog(DebugAction.Prop, `<${node.localName}> ${key} = ${formatDebugValue(newProp)}`);
+
       handler?.set(node, key, newProp, oldProp);
     }
   }
