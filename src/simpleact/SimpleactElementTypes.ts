@@ -1,4 +1,5 @@
 import { type Fragment } from "./SimpleactFragment";
+import { type Hook } from "./SimpleactHooksTypes";
 
 export type SimpleactComponent<P extends Props = any> = (props: P) => Child;
 export type Props = Record<string, any>;
@@ -50,7 +51,12 @@ export interface SimpleactElementComponent {
 }
 
 export interface ComponentInstance {
+  id: number;
   element: SimpleactElementComponent;
+  hooks: Hook[];
+  hookIndex: number;
+  isMounted: boolean;
+  isUpdateScheduled: boolean;
 }
 
 export type SimpleactElement =

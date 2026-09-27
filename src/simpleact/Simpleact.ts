@@ -1,3 +1,4 @@
 import { Fragment } from "./SimpleactFragment";
+import { useState } from "./SimpleactHooks";
 
-export { Fragment };
+export { Fragment, useState };
