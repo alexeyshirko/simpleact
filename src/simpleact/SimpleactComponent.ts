@@ -13,6 +13,28 @@ export function mountComponent(element: SimpleactElementComponent) {
   const componentInstance = createComponentInstance(element);
   element.componentInstance = componentInstance;
 
-  const formattedChildren = normalizeChildren(element.component(element.props), { saveDOMPosition: true });
+  renderComponent(element);
+}
+
+export function updateComponent(oldElement: SimpleactElementComponent, newElement: SimpleactElementComponent) {
+  const componentInstance = oldElement.componentInstance;
+
+  if (componentInstance) {
+    componentInstance.element = newElement;
+    newElement.componentInstance = componentInstance;
+
+    unmountComponent(oldElement);
+    renderComponent(newElement);
+  }
+}
+
+export function unmountComponent(element: SimpleactElementComponent) {
+  element.componentInstance = null;
+}
+
+function renderComponent(element: SimpleactElementComponent) {
+  const renderedValue = element.component(element.props);
+  const formattedChildren = normalizeChildren(renderedValue, { saveDOMPosition: true });
+
   element.children = formattedChildren;
 }

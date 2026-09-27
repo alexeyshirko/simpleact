@@ -10,6 +10,7 @@ export const SimpleactElementEmptyMethods: SimpleactElementTypeMethods<Simpleact
   },
   update: (oldElement, newElement) => {
     newElement.target = oldElement.target;
+    oldElement.target = null;
   },
   unmount: (element, shouldRemoveNode) => {
     if (shouldRemoveNode) element.target?.remove();

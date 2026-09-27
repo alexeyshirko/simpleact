@@ -11,6 +11,7 @@ export const SimpleactElementTextMethods: SimpleactElementTypeMethods<SimpleactE
   update: (oldElement, newElement) => {
     const node = oldElement.target;
     newElement.target = node;
+    oldElement.target = null;
 
     const isTargetExist = !!node;
     const isElementValueChanged = oldElement.value !== newElement.value;

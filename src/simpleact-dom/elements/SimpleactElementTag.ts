@@ -16,6 +16,7 @@ export const SimpleactElementTagMethods: SimpleactElementTypeMethods<SimpleactEl
   update: (oldElement, newElement) => {
     const node = oldElement.target;
     newElement.target = node;
+    oldElement.target = null;
 
     const isTargetExist = !!node;
 
